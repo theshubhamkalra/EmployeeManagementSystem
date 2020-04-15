@@ -1,0 +1,13 @@
+
+form{
+    border : 5px solid plum;
+    padding: 10px;
+    
+}
+.validation{
+    color:red
+}
+
+.ng-invalid.ng-touched{
+    border: 2px solid red;
+}

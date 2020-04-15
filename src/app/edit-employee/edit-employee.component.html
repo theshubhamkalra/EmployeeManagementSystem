@@ -1,0 +1,35 @@
+<h3>{{title}}</h3>
+<form #f='ngForm' (ngSubmit)='edit(f)'>
+        <label for="name">Employee Name : </label>
+        <input required pattern ="[a-zA-Z]+" ngModel name="empname" type='text' minlength="3" #nm='ngModel' id="name" [(ngModel)]='empname'>
+        <div class='validation' *ngIf="!nm.valid && nm.touched">
+            <div *ngIf="nm.errors.minlength ">Minimum Length should be {{nm.errors.minlength.requiredLength}} characters</div>
+            <div *ngIf="nm.errors.required ">Name Required ,Can't be empty</div>
+            <div *ngIf="nm.errors.pattern ">Only Aphabets Allowed</div>
+        </div>
+    <p></p>
+    <label for="location">Location : </label>
+    <select required ngModel #loc='ngModel' id='location' name="emploc" [(ngModel)]="emplocation">
+        <option *ngFor="let loc of location" [value]="loc">{{loc}}</option>
+    </select>
+    <div class="validation" *ngIf="!loc.valid && loc.touched">Required Field</div>
+    <p></p>
+    <label for="email">Email : </label>
+    <input id='email' required #mail='ngModel' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" type ='email' ngModel name='empemail' [(ngModel)]='empemail'>
+    <div class="validation" *ngIf='!mail.valid && mail.touched'>
+        <div *ngIf='mail.errors?.pattern'>Email Not in Correct format //example : john@email.com//</div>
+        <div *ngIf='mail.errors?.required'>Cant be Empty</div>
+    </div>
+    <p></p>
+    <label for="mobile">Mobile : </label>
+    <input id="mobile" pattern ="[0-9]+" required #mob='ngModel' minlength="10" maxlength="10" type ='text' ngModel name='empmobile' [(ngModel)]="empmobile">
+    <div class="validation" *ngIf="!mob.valid && mob.touched">
+        <div *ngIf="mob.errors.required">Cant be Empty</div>
+        <div *ngIf="mob.errors.minlength">Minimum Length should be {{mob.errors.minlength.requiredLength}} characters </div>
+        <div *ngIf="mob.errors.pattern">Only Numbers Allowed </div>
+    </div>
+    <p></p>
+    <button type="submit" id="update" [disabled]="!f.valid">Update</button>
+    <p></p>
+    </form>
+    
